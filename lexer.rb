@@ -51,6 +51,15 @@ class Lexer
         elsif indent.size < current_indent
           while indent.size < current_indent
             indent_stack.pop
+            current_indent = indent_stack.last || 0
+            tokens << [:DEDENT, indent.size]
+          end
+          tokens << [:NEWLINE, "\n"]
+        else
+          raise "Missing ':'"
+        end
+        i += indent.size + 1
+          
+        
+      
     
-    
-  
